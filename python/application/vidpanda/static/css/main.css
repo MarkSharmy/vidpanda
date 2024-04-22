@@ -1,0 +1,200 @@
+@import url(props.css);
+
+header {
+    padding: 1rem 2rem;
+}
+
+main {
+    margin-top: 1rem;
+}
+
+.head-titles {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+
+.head-titles a {
+    text-decoration: none;
+    font-family: var(--poppins);
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+    
+}
+
+.ytube-container {
+    border: 1px solid var(--light-gray);
+    border-radius: 0.5rem;
+    width: 80%;
+    margin: auto;
+    padding: 2rem;
+}
+
+.ytube-container h2 {
+    font-family: var(--IBM);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dark);
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.ytube-container form .search-box {
+    border: 4px solid var(--dark);
+    border-radius: 1rem;
+    width: 70%;
+    height: 3.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.ytube-container form .search-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-family: var(--IBM);
+}
+
+.ytube-container form .search-box .btn-search {
+    background-color: var(--dark);
+    color: white;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    height: 3.5rem;
+    width: 8rem;
+}
+
+.ytube-container .hero {
+    padding: 1rem;
+}
+
+.ytube-container .hero p {
+    text-align: center;
+}
+
+.ytube-container .hero h1 {
+    text-align: center;
+}
+
+.ytube-container .hero img {
+    width: 24rem;
+    margin: auto;
+}
+
+main #about {
+    width: 80%;
+    margin: 2rem auto;
+}
+
+main #about h2{
+    text-align: center;
+    font-family: var(--poppins);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+main #about p {
+    text-align: center;
+    font-family: var(--lato);
+    font-size: 1rem;
+    color: var(--dark-gray);
+}
+
+main #features {
+    width: 80%;
+    display: flex;
+    align-items: first baseline;
+    justify-content: space-around;
+    border-top: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+main #features .instructions h3 {
+    font-family: var(--poppins);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+}
+
+main #features .instructions li {
+    font-family: var(--lato);
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin: 1rem auto;
+}
+
+main #features .features h3 {
+    font-family: var(--poppins);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--dark-gray);
+}
+
+main #features .features li {
+    font-family: var(--lato);
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin: 1rem auto;
+}
+
+main #perks {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+}
+
+main #perks .display {
+    margin: 1rem auto;
+}
+
+main #perks .display .icon{
+    text-align: center;
+}
+
+main #perks .display .icon img{
+    height: 56px;   
+}
+
+main #perks .display h3 {
+    font-family: var(--poppins);
+    color: var(--dark);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+main #perks .display p {
+    font-family: var(--lato);
+    color: var(--dark-gray);
+    font-size: 1rem;
+    text-align: center;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid var(--gray);
+}
+
+footer small {
+    font-family: var(--helvetica);
+    font-weight: 500;
+    color: var(--dark-gray);
+}
+
+footer h6 {
+    width: 10rem;
+}
+

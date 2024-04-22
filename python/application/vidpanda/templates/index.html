@@ -1,0 +1,81 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidpanda - Online Video Downloader</title>
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href="{% static 'css/ref.css'%}">
+</head>
+<body>
+    <header>
+        <div class="head-titles">
+            <a href="#">Youtube Downloader</a>
+            <a href="#">Instagram Downloader</a>
+            <a href="#">Facebook Downloader</a>
+        </div>
+    </header>
+    <main>
+        <div class="ytube-container">
+            <h2>Download Videos &amp; Playlists from Youtube</h2>
+            <form action="#">
+                <div class="search-box">
+                    <input type="search" placeholder="Paste your link here...">
+                    <button class="btn-search">
+                        <span class="text">Start</span>
+                        <i class='bx bxs-arrow-to-right'>--</i>
+                    </button>
+                </div>
+                <div class="hero">
+                    <h1><img src="{% static 'images/hero.svg'%}" width="1000" alt="hero img"></h1>
+                </div>
+            </form>
+        </div>
+        <section id="about">
+            <h2>Youtube video downloader</h2>
+            <p>Download premium quality videos with our advanced YouTube downloader, now offering MP4 format conversions. <br>
+                Experience superior video clarity on a range of platforms, including TikTok, Instagram, Facebook, and YouTube. <br>
+                Select your preferred resolution - SD, HD, FullHD, 2K, or 4K. Capture videos in their original 1080p quality or <br>
+                opt for a different resolution based on your needs</p>
+        </section>
+        <section id="features">
+            <ol class="instructions">
+                <h3>Instructions</h3>
+                <li>Directly paste the link of the video you want to covert</li>
+                <li>Click “Start” button to begin converting process</li>
+                <li>Select the video format you want to download, then click
+                    the “Download” button</li>
+            </ol>
+            <ul class="features">
+                <h3>Features</h3>
+                <li>Unlimited downloads and always free</li>
+                <li>High speed video converter</li>
+                <li>No registration requred</li>
+                <li>Support download with all formats</li>
+            </ul>
+        </section>
+        <sections id="perks">
+            <div class="display">
+                <div class="icon"><img src="{% static 'images/icons_download.svg'%}" alt="download icon"></div>
+                <h3>Free Download</h3>
+                <p>Unlimited conversion and free <br> download</p>
+            </div>
+            <div class="display">
+                <div class="icon"><img src="{% static 'images/icons_reel.svg'%}" alt="reel icon"></div>
+                <h3>Video &amp; Audio</h3>
+                <p>Direct Video Download</p>
+            </div>
+            <div class="display">
+                <div class="icon"><img src="{% static 'images/icons_gift.svg'%}" alt="gift icon"></div>
+                <h3>Easy Download</h3>
+                <p>Fully compatible with all browsers</p>
+            </div>
+        </sections>
+    </main>
+    <footer>
+        <small>&copy; 2024.A product of Magnet Software. All rights reserved</small>
+        <h6><img src="{% static 'images/hot-logo.svg'%}" alt=""></h6>
+    </footer>
+</body>
+</html>

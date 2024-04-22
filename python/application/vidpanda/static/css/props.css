@@ -1,0 +1,33 @@
+@font-face {
+    font-family: IBM;
+    src: "../fonts/IBM_Plex_Mono/IMBPlexMono-Regular.ttf";
+}
+
+@font-face {
+    font-family: Helvetica;
+    src: "../fonts/Helvetica-Font/Helvetica.ttf";
+}
+
+@font-face {
+    font-family: Lato;
+    src: "../fonts/Lato-Regular.ttf";
+}
+
+@font-face {
+    font-family: Mexcellent;
+    src: "../fonts/Mexcellent/mexcellent_3rg.otf";
+}
+
+:root {
+    --poppins: "Poppins", sans-serif;
+    --helvetica: Helvetica, sans-serif;
+    --mexcellent: Mexcellent;
+    --lato: Lato, sans-serif;
+    --IBM: IBM, monospace;
+
+    --dark: #1a1a1a;
+    --gray: #808080;
+    --light-gray: #cccccc;
+    --dark-gray: #333333;
+    --green: #39b54a; 
+}
