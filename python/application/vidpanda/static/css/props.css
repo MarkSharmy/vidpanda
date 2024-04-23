@@ -18,8 +18,13 @@
     src: "../fonts/Mexcellent/mexcellent_3rg.otf";
 }
 
+@font-face {
+    font-family: Poppins;
+    src: "../fonts/Poppins/Poppins-Black.ttf";
+}
+
 :root {
-    --poppins: "Poppins", sans-serif;
+    --poppins: Poppins, sans-serif;
     --helvetica: Helvetica, sans-serif;
     --mexcellent: Mexcellent;
     --lato: Lato, sans-serif;

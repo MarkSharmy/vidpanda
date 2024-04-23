@@ -87,6 +87,68 @@ main {
     margin: auto;
 }
 
+.ytube-container #download-info.active {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+    width: 100%;
+}
+
+.ytube-container #download-info.hide {
+    display: none;
+}
+
+#download-info .thumbail {
+    display: flex;
+    justify-content: center;
+}
+
+.ytube-container #download-info .left h2 {
+    font-family: var(--poppins);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    width: 20rem;
+}
+
+
+.table {
+    border: 1px solid var(--gray);
+    border-spacing: 0;
+    padding: 0;
+}
+
+.table thead {
+    background-color: var(--gray);
+}
+
+.table thead tr th {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 1rem 2rem;
+    color: white;
+}
+
+td {
+    color: var(--dark-gray);
+    font-family: var(--lato);
+    text-align: center;
+    border: 1px solid var(--light-gray);
+    padding: 0.5rem 1rem;
+}
+
+td button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: white;
+    font-family: var(--poppins);
+    background-color: var(--green);
+    border-radius: 0.5rem;
+}
+
 main #about {
     width: 80%;
     margin: 2rem auto;
