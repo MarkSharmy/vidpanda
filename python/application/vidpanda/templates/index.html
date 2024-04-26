@@ -8,6 +8,7 @@
     <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/ref.css'%}">
+    <script src="{% static 'js/script.js'%}"></script>
 </head>
 <body>
     <header>
@@ -20,10 +21,10 @@
     <main>
         <div class="ytube-container">
             <h2>Download Videos &amp; Playlists from Youtube</h2>
-            <form action="download/" method="get">
+            <form action="#" method="get">
                 <div class="search-box">
                     <input id="yt-link" name="yt-link" type="search" placeholder="Paste your link here...">
-                    <button class="btn-search">
+                    <button id="btn-search" class="btn-search">
                         <span class="text">Start</span>
                         <i class='bx bx-right-arrow-alt'></i>
                     </button>
@@ -31,8 +32,33 @@
                 <div class="hero">
                     <h1><img src="{% static 'images/hero.svg'%}" width="1000" alt="hero img"></h1>
                 </div>
-                <div class="download active">
-
+                <div id="download-info" class="hide">
+                    <div class="left">
+                        <div class="thumbnail">
+                            <img src={{thumbnail}} width="280" alt="thumbnail">
+                        </div>
+                        <h2>{{video_title}}</h2>
+                    </div>
+                    <div class="right">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>File Type</th>
+                                    <th>File Size</th>
+                                    <th>File Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for res in resolution %}
+                                    <tr>
+                                        <td>{{res}}</td>
+                                        <td>Size</td>
+                                        <td><button>Download</button></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>

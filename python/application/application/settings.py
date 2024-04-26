@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PORT = 7000
+
 
 # Application definition
 
