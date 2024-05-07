@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from . import views, controller
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("download/", views.download)
+    path("youtube/", controller.youtube),
+    path("playlist/", controller.playlist),
 ]

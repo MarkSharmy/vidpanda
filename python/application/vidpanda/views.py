@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from collections import OrderedDict
 from pytube import YouTube # type: ignore
 from pytube import Playlist #type: ignore
@@ -9,12 +9,6 @@ import re
 def home(request):
     return render(request, "index.html")
 
-def download(request):
-
-    if request.method == 'POST':
-        json_data = json.loads(request.body)
-
-        print(json_data)
 
 def test_download(request):
 
