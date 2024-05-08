@@ -28,15 +28,15 @@
                         <span class="text">Start</span>
                         <i class='bx bx-right-arrow-alt'></i>
                     </button>
-                    <p class="error"></p>
                 </div>
+                <p class="error"></p>
                 <div class="hero">
                     <h1><img src="{% static 'images/hero.svg'%}" width="1000" alt="hero img"></h1>
                 </div>
-                <div id="download-info" class="hide">
+                <div id="download-info">
                     <div class="left">
                         <div class="thumbnail">
-                            <img width="280" alt="thumbnail" src={{thumbnail}}>
+                            <img width="280" id="thumbnail" alt="thumbnail" src={{thumbnail}}>
                         </div>
                         <h2>{{video_title}}</h2>
                     </div>
@@ -50,13 +50,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for res in resolution %}
-                                    <tr>
-                                        <td>{{res}}</td>
-                                        <td>Size</td>
-                                        <td><button>Download</button></td>
-                                    </tr>
-                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

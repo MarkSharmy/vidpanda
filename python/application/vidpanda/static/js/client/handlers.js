@@ -1,5 +1,11 @@
 import { retrievePlaylistData, retrieveVideoData } from "../api/controller.js";
 
+export function refreshComponents()
+{
+    const container = document.getElementById("download-info");
+    container.classList.remove("active");
+}
+
 export function searchHandler()
 {
     const searchButton = document.getElementById("btn-search");
@@ -8,23 +14,58 @@ export function searchHandler()
     searchButton.addEventListener("click", () => {
 
         let url = inputURL.value;
-        let prompt = document.querySelector(".error");
+        const prompt = document.querySelector(".error");
         const type = parseURL(url);
         prompt.innerHTML = "";
 
         if(type === "Invalid" )
         {
-            let message = "Invalid URL, pleaser try again";
+            let message = "Invalid URL, Please Try Again.";
             prompt.innerText = message;
         }
         else if (type === "Playlist")
         {
             retrievePlaylistData(url);
+            let img = document.createElement("img");
+            img.setAttribute("height", "56px");
+            img.src = "/vidpanda/static/images/loading.gif";
+            prompt.appendChild(img);
         }
         else if (type === "Video")
         {
             retrieveVideoData(url);
+            let img = document.createElement("img");
+            img.setAttribute("height", "56px");
+            img.src = "/vidpanda/static/images/loading.gif";
+            prompt.appendChild(img)
         }
+    });
+
+}
+
+export function loadVideoTable(data)
+{
+    const container = document.getElementById("download-info");
+    container.classList.add("active");
+    const img = document.getElementById("thumbnail");
+    img.src = data.thumbnail
+
+    const resolutions = data.resolution
+    const tbody = document.querySelector("tbody");
+
+    resolutions.forEach(res => {
+        let downloadButton = document.createElement("button");
+        downloadButton.innerText = "Download"
+        let row = document.createElement("tr");
+        let resData = document.createElement("td");
+        resData.innerText = res;
+        row.appendChild(resData);
+        let sizeData = document.createElement("td");
+        row.appendChild(sizeData);
+        let actionData = document.createElement("td");
+        actionData.appendChild(downloadButton);
+        row.appendChild(actionData);
+        tbody.appendChild(row);
     });
 
 }

@@ -1,3 +1,4 @@
+import {loadVideoTable} from "../client/handlers.js";
 
 export function retrieveVideoData(url)
 {
@@ -6,6 +7,7 @@ export function retrieveVideoData(url)
     };
 
     const params = new URLSearchParams(data)
+    const prompt = document.querySelector(".error");
       
     fetch(`youtube/?${params}`, {
     method: 'POST',
@@ -17,11 +19,13 @@ export function retrieveVideoData(url)
     .then(response => response.json())
     .then(responseData => {
         // Process the response data here
-        console.log(responseData);
+        loadVideoTable(responseData);
+        prompt.innerHTML = "";
     })
     .catch(error => {
         // Handle any errors that occur during the request
         console.error('Error:', error);
+        prompt.innerHTML = "";
     });
 
 }
@@ -45,10 +49,12 @@ export function retrievePlaylistData(url)
     .then(responseData => {
         // Process the response data here
         console.log(responseData);
+        prompt.innerHTML = "";
     })
     .catch(error => {
         // Handle any errors that occur during the request
         console.error('Error:', error);
+        prompt.innerHTML = "";
     });
 
 }
