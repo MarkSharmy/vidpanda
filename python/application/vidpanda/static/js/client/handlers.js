@@ -48,19 +48,22 @@ export function loadVideoTable(data)
     const container = document.getElementById("download-info");
     container.classList.add("active");
     const img = document.getElementById("thumbnail");
-    img.src = data.thumbnail
+    img.src = data.thumbnail;
 
-    const resolutions = data.resolution
+    const resolutions = data.resolution;
+    const sizes = data.video_size;
     const tbody = document.querySelector("tbody");
 
     resolutions.forEach(res => {
         let downloadButton = document.createElement("button");
-        downloadButton.innerText = "Download"
+        downloadButton.innerText = "Download";
+        downloadButton.setAttribute("data-quality", new String(res))
         let row = document.createElement("tr");
         let resData = document.createElement("td");
         resData.innerText = res;
         row.appendChild(resData);
         let sizeData = document.createElement("td");
+        sizeData.textContent = `${Number(parseInt(sizes[resolutions.indexOf(res)]) / 1000000).toFixed(2)} MB`;
         row.appendChild(sizeData);
         let actionData = document.createElement("td");
         actionData.appendChild(downloadButton);
