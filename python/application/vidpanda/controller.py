@@ -51,47 +51,49 @@ def youtube(request):
             "resolution": resolutions,
             "video_size": video_sizes,
             "embed_link": link,
-            "video_title": title,
+            "title": title,
             "thumbnail": thumbnail_url,
+            "url": url
         }
 
 
         return JsonResponse(context)
 
-def download_youtube(url):
+@csrf_exempt
+def download_youtube(request):
 
-    output_folder = "tmp/"
-    
-    #if request.method == "POST":
+    if request.method == "POST":
 
-    # data = json.loads(request.body)
-    # url = data.get("url")
+        data = json.loads(request.body)
+        url = data.get("url")
 
-    desired_resolution = "720p"
+        output_folder = "tmp/"
 
-    yt = YouTube(url)
+        desired_resolution = data.get("resolution")
 
-    # Filter streams based on resolution
-    streams = yt.streams.filter(res=desired_resolution)
-    # Select the first stream (highest resolution)
-    stream = streams.first()
-    print("STREAM:", stream)
+        yt = YouTube(url)
+
+        # Filter streams based on resolution
+        streams = yt.streams.filter(res=desired_resolution)
+        # Select the first stream (highest resolution)
+        stream = streams.first()
+        print("STREAM:", stream)
 
 
-    # Download the video
-    print("Downloading...")
-    stream.download(output_path=output_folder)
-    print("Download complete")
+        # Download the video
+        print("Downloading...")
+        stream.download(output_path=output_folder)
+        print("Download complete")
 
-    title = sanitize_filename(yt.title, ".mp4")
+        title = sanitize_filename(yt.title, ".mp4")
 
-    # Specify the file path
-    video_path = output_folder + title
+        # Specify the file path
+        video_path = output_folder + title
 
-    response = FileResponse(open(video_path, 'rb'), content_type='video/mp4')
-    response['Content-Disposition'] = 'attachment; filename="video.mp4"'
-    
-    return response
+        response = FileResponse(open(video_path, 'rb'), content_type='video/mp4')
+        response['Content-Disposition'] = f"attachment; filename={title}"
+        
+        return response
 
      
 

@@ -1,4 +1,5 @@
 import { retrievePlaylistData, retrieveVideoData } from "../api/controller.js";
+import Modal from "../components/Modal.js";
 
 export function refreshComponents()
 {
@@ -25,19 +26,30 @@ export function searchHandler()
         }
         else if (type === "Playlist")
         {
-            retrievePlaylistData(url);
+            retrieveVideoData(url);
+
+            const loading = document.createElement("div");
+            loading.classList.add("loading");
+            prompt.appendChild(loading);
+            
             let img = document.createElement("img");
             img.setAttribute("height", "56px");
             img.src = "/vidpanda/static/images/loading.gif";
-            prompt.appendChild(img);
+            loading.appendChild(img);
         }
         else if (type === "Video")
         {
             retrieveVideoData(url);
+
+            const loading = document.createElement("div");
+            loading.classList.add("loading");
+            prompt.appendChild(loading);
+            
             let img = document.createElement("img");
             img.setAttribute("height", "56px");
             img.src = "/vidpanda/static/images/loading.gif";
-            prompt.appendChild(img)
+            loading.appendChild(img);
+            
         }
     });
 
@@ -56,8 +68,10 @@ export function loadVideoTable(data)
 
     resolutions.forEach(res => {
         let downloadButton = document.createElement("button");
+        downloadButton.classList.add("btn-download");
         downloadButton.innerText = "Download";
-        downloadButton.setAttribute("data-quality", new String(res))
+        downloadButton.setAttribute("data-quality", new String(res));
+        downloadButton.addEventListener("click", () => openModal(data.title, data.url, downloadButton));
         let row = document.createElement("tr");
         let resData = document.createElement("td");
         resData.innerText = res;
@@ -90,22 +104,13 @@ function parseURL(url)
     return 'Invalid';
 }
 
-export function openModalHandler()
+function openModal(title, url, element)
 {
+    const container = document.querySelector("main");
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("active");
 
-}
-
-export function closeModalHandler()
-{
-
-}
-
-export function downloadHandler()
-{
-
-}
-
-export function playlistHandler()
-{
-
+    const resolution = element.getAttribute("data-quality");
+    const modal = new Modal(title, url, resolution);
+    container.appendChild(modal);
 }
