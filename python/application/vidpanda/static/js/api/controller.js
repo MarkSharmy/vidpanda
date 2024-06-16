@@ -1,4 +1,4 @@
-import {loadVideoTable} from "../client/handlers.js";
+import {loadVideoTable, loadPlaylistTable} from "../client/components.js";
 
 export function retrieveVideoData(url)
 {
@@ -95,6 +95,7 @@ export function retrievePlaylistData(url)
     };
 
     const params = new URLSearchParams(data)
+    const prompt = document.querySelector(".error");
       
     fetch(`playlist/?${params}`, {
     method: 'POST',
@@ -106,7 +107,7 @@ export function retrievePlaylistData(url)
     .then(response => response.json())
     .then(responseData => {
         // Process the response data here
-        console.log(responseData);
+        loadPlaylistTable(responseData);
         prompt.innerHTML = "";
     })
     .catch(error => {

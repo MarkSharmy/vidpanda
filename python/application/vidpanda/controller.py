@@ -99,16 +99,37 @@ def download_youtube(request):
 
 @csrf_exempt
 def playlist(request):
-    
-    if request.method == "POST":
-        data = json.loads(request.body)
-        link = data.get("url");
 
-        response_data = {
-            "type": "Playlist",
+    if request.method == "POST":
+        
+        data = json.loads(request.body)
+        url = data.get("url")
+        videos = []
+
+        #Create Playlist Object
+        playlist_obj = Playlist(url)
+
+
+        link = url.replace("playlist?list=", "embed/")
+        thumbnail_url = playlist_obj.videos[0].thumbnail_url
+        title = playlist_obj.title
+        
+        for video in playlist_obj.video_urls:
+            videos.append({
+                "url": video,
+                "thumbnail": YouTube(video).thumbnail_url,
+                "title": YouTube(video).title
+            })
+
+        context = {
+            "url": url,
+            "title": title,
+            "videos": videos,
+            "embed_link": link,
+            "thumbnail": thumbnail_url,
         }
 
-        return JsonResponse(response_data)
+        return JsonResponse(context)
     
 def sanitize_filename(filename, extension):
     # Define a pattern to match symbols that cannot be used in a file name

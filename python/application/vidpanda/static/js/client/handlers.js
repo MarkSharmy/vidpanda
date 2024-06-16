@@ -1,5 +1,4 @@
 import { retrievePlaylistData, retrieveVideoData } from "../api/controller.js";
-import Modal from "../components/Modal.js";
 
 export function refreshComponents()
 {
@@ -17,7 +16,9 @@ export function searchHandler()
         let url = inputURL.value;
         const prompt = document.querySelector(".error");
         const type = parseURL(url);
+
         prompt.innerHTML = "";
+
 
         if(type === "Invalid" )
         {
@@ -26,7 +27,7 @@ export function searchHandler()
         }
         else if (type === "Playlist")
         {
-            retrieveVideoData(url);
+            retrievePlaylistData(url);
 
             const loading = document.createElement("div");
             loading.classList.add("loading");
@@ -55,38 +56,6 @@ export function searchHandler()
 
 }
 
-export function loadVideoTable(data)
-{
-    const container = document.getElementById("download-info");
-    container.classList.add("active");
-    const img = document.getElementById("thumbnail");
-    img.src = data.thumbnail;
-
-    const resolutions = data.resolution;
-    const sizes = data.video_size;
-    const tbody = document.querySelector("tbody");
-
-    resolutions.forEach(res => {
-        let downloadButton = document.createElement("button");
-        downloadButton.classList.add("btn-download");
-        downloadButton.innerText = "Download";
-        downloadButton.setAttribute("data-quality", new String(res));
-        downloadButton.addEventListener("click", () => openModal(data.title, data.url, downloadButton));
-        let row = document.createElement("tr");
-        let resData = document.createElement("td");
-        resData.innerText = res;
-        row.appendChild(resData);
-        let sizeData = document.createElement("td");
-        sizeData.textContent = `${Number(parseInt(sizes[resolutions.indexOf(res)]) / 1000000).toFixed(2)} MB`;
-        row.appendChild(sizeData);
-        let actionData = document.createElement("td");
-        actionData.appendChild(downloadButton);
-        row.appendChild(actionData);
-        tbody.appendChild(row);
-    });
-
-}
-
 function parseURL(url)
 {
     const playlistRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:playlist\?|.*?&)?(?:list=)([^#\&\?\n]+)/;
@@ -102,15 +71,4 @@ function parseURL(url)
     }
 
     return 'Invalid';
-}
-
-function openModal(title, url, element)
-{
-    const container = document.querySelector("main");
-    const overlay = document.getElementById("overlay");
-    overlay.classList.add("active");
-
-    const resolution = element.getAttribute("data-quality");
-    const modal = new Modal(title, url, resolution);
-    container.appendChild(modal);
 }
