@@ -1,3 +1,4 @@
+import { downloadVideo } from "../api/controller.js";
 import Modal from "../components/Modal.js";
 
 export function loadVideoTable(data)
@@ -135,11 +136,18 @@ export function loadPlaylistTable(data)
         btn_download.innerText = "Download";
         btnContainer.appendChild(btn_download);
 
+        btn_download.addEventListener("click", () => {
+            btn_download.setAttribute("data-quality", selection.value);
+            openModal(video.title, video.url, btn_download);
+        });
+
     });
 }
 
 function openModal(title, url, element)
 {
+    element.innerText = "Downloading";
+    
     const container = document.querySelector("main");
     const overlay = document.getElementById("overlay");
     overlay.classList.add("active");

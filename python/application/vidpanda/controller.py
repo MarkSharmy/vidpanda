@@ -1,10 +1,11 @@
 import os
 import re
 import json
-from pytube import YouTube, Playlist #type: ignore
+from pytubefix import YouTube, Playlist #type: ignore
+from pytubefix.cli import on_progress #type: ignore
 #from .mocktest import YouTube
 from django.http import JsonResponse
-from django.http import FileResponse
+from django.http import StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +19,7 @@ def youtube(request):
         url = data.get("url")
 
         #Create YouTube Object
-        yt_obj = YouTube(url)
+        yt_obj = YouTube(url, on_progress_callback = on_progress)
 
         #Extract all the available resolutions for streaming
         strm_all = yt_obj.streams
@@ -77,22 +78,16 @@ def download_youtube(request):
         streams = yt.streams.filter(res=desired_resolution)
         # Select the first stream (highest resolution)
         stream = streams.first()
-        print("STREAM:", stream)
-
-
-        # Download the video
-        print("Downloading...")
-        stream.download(output_path=output_folder)
-        print("Download complete")
-
+        
         title = sanitize_filename(yt.title, ".mp4")
 
-        # Specify the file path
-        video_path = output_folder + title
+        def generate_chunks():
+            for chunk in stream.iter_content(chunk_size=1024):
+                yield chunk
 
-        response = FileResponse(open(video_path, 'rb'), content_type='video/mp4')
-        response['Content-Disposition'] = f"attachment; filename={title}"
-        
+        response = StreamingHttpResponse(generate_chunks(), content_type='video/mp4')
+        response['Content-Disposition'] = f'attachment; filename="{title}"'
+
         return response
 
      
@@ -139,3 +134,9 @@ def sanitize_filename(filename, extension):
     sanitized_filename = re.sub(pattern, "", filename)
 
     return sanitized_filename + extension
+
+def on_progress(stream, chunk, bytes_remaining):
+    total_size = stream.filesize
+    bytes_downloaded = total_size - bytes_remaining
+    percentage = (bytes_downloaded / total_size) * 100
+    print(f"Downloading... {percentage:.2f}%")

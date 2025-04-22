@@ -32,6 +32,10 @@ export function retrieveVideoData(url)
 
 export function downloadVideo(url, resolution)
 {
+    console.log("Downloading...");
+    console.log("URL:", url);
+    console.log("Resolution:", resolution);
+
     const data = {
         url: url,
         resolution: resolution

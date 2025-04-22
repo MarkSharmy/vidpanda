@@ -178,7 +178,7 @@ main {
 
 .title h3{
     font-family: var(--IBM);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
     flex-grow: 2;
 }
